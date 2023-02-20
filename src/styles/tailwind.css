@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+::placeholder {
+    text-align: center; 
+ }
+
+.radio-btn {
+    @apply w-[8px] h-[8px] bg-black opacity-25 rounded-full
+}
+
+.radio-btn.active {
+    @apply opacity-100
+}
+
+.box-shadow{
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 2px 8px;
+}
