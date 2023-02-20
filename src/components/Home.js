@@ -37,18 +37,18 @@ export default function Home({token}) {
 
   return (
     <div>
-        <header className=' h-[4rem] flex px-[1rem] mb-[4rem]'>
+        <header className=' h-[4rem] flex px-[1rem] mb-[3rem]'>
             <img src={Logo} alt="logo-technopartner" />
         </header>
 
-        <div className="profile-desc px-[2rem]">
+        <div className="profile-desc p-[2rem] bg-motif bg-cover bg-no-repeat">
             <div className="greeting mb-[1.5rem]">
                 <p>{fetchedData.greeting},</p>
                 <h1 className='font-bold'>{fetchedData.name}</h1>
-            </div>            
-            <div className="qr-saldo-points box-shadow flex justify-between items-center py-3 px-6">
-                    <button onClick={()=>setShowQR(true)} >
-                        <img src={fetchedData.qrcode} alt="qr-code" width="50px" height="50px" />
+            </div>  
+            <div className="qr-saldo-points box-shadow flex justify-between items-center py-3 px-6 rounded-lg">
+                    <button onClick={()=>setShowQR(true)} className="rounded-full p-4 box-shadow" >
+                        <img src={fetchedData.qrcode} alt="qr-code" width="30px" height="30px" />
                     </button>
                     <div className="saldo-points-wrapper flex gap-[4rem]">
                     <div className="saldo-points">
@@ -56,8 +56,8 @@ export default function Home({token}) {
                         <p>Points</p>
                     </div>
                     <div className="saldo-points-value text-right">
-                        <p className='font-bold'>Rp {fetchedData.saldo}</p>
-                        <p className=' font-bold text-blue-300'>{fetchedData.point}</p>
+                        <p className='font-bold'>Rp {new Intl.NumberFormat("de-DE").format(fetchedData.saldo)}</p>
+                        <p className=' font-bold text-blue-300'>{new Intl.NumberFormat("de-DE").format(fetchedData.point)}</p>
                     </div>
                     </div>
                     {/* <img src={} alt="" /> */}
@@ -73,10 +73,10 @@ export default function Home({token}) {
           </div>}
 
         <div className="image-slider">
-            <div className="image px-[3rem] py-[1rem] w-full h-[200px] flex justify-center items-center">
-                <img src={banners[0]} alt="logo-technopartner" />
+            <div className="image py-[1rem] w-full h-[200px] flex justify-center items-center">
+                <img src={banners[0]} alt="logo-technopartner" className='w-full h-[200px] object-cover' />
             </div>
-            <div className="buttons px-[2rem] flex justify-between items-center">
+            <div className="buttons px-[2rem] flex justify-between items-center pb-[4rem]">
                 <div className="select-img flex gap-[0.6rem]">
                     <button className='radio-btn active'></button>
                     <button className='radio-btn'></button>

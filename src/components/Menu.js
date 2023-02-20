@@ -54,6 +54,16 @@ export default function Menu({token}) {
         setShowCategoryProducts(true)
         setCategory(2)
     }
+    const coldbrewProducts = () => {
+        setShowAllProducts(false)
+        setShowCategoryProducts(true)
+        setCategory(3)
+    }
+    const chocolateProducts = () => {
+        setShowAllProducts(false)
+        setShowCategoryProducts(true)
+        setCategory(4)
+    }
 
 
   return (
@@ -62,10 +72,12 @@ export default function Menu({token}) {
             <div className="menu py-4 font-bold">
                 <h1>MENU</h1>
             </div>
-            <div className="menu-list flex justify-around font-bold py-4">
-                <button onClick={()=>allProducts()}>Seasonal Product</button>
-                <button onClick={()=>bestSeller()}>Best Seller</button>
-                <button onClick={()=>coffeeProducts()}>Coffee</button>
+            <div className="menu-list px-4 flex gap-[2rem] font-bold overflow-x-scroll">
+                <button onClick={()=>allProducts()} className={showAllProducts? "border-black border-b-4 py-4 whitespace-nowrap" : " text-gray-400 py-4 whitespace-nowrap"}>Seasonal Product</button>
+                <button onClick={()=>bestSeller()} className={(showCategoryProducts && category===1) ? "border-black border-b-4 py-4 whitespace-nowrap" : " text-gray-400 py-4 whitespace-nowrap"}>Best Seller</button>
+                <button onClick={()=>coffeeProducts()} className={(showCategoryProducts && category===2) ? "border-black border-b-4 py-4 whitespace-nowrap" : " text-gray-400 py-4 whitespace-nowrap"}>Coffee</button>
+                <button onClick={()=>coldbrewProducts()} className={(showCategoryProducts && category===3) ? "border-black border-b-4 py-4 whitespace-nowrap" : " text-gray-400 py-4 whitespace-nowrap"}>Cold Brew</button>
+                <button onClick={()=>chocolateProducts()} className={(showCategoryProducts && category===4) ? "border-black border-b-4 py-4 whitespace-nowrap" : " text-gray-400 py-4 whitespace-nowrap"}>Chocolate</button>
             </div>
         </header>
 
