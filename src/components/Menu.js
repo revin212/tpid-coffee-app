@@ -9,8 +9,7 @@ export default function Menu({token}) {
     const [showCategoryProducts, setShowCategoryProducts] = useState(false)
     const [category, setCategory] = useState(0)
     const [isLoading, setIsLoading] = useState(true)
-    // const [showBestSeller, setShowBestSeller] = useState(false)
-    // const [showCoffee, setShowCoffee] = useState(false)
+
 
     useEffect(()=>{
         const getMenuData = async () => {
@@ -25,12 +24,9 @@ export default function Menu({token}) {
                         show_all: '1'
                     })
                 })
-                // console.log(response)
                 const data = await response.json()
-                // console.log(data)
                 setMenuData(data.result.categories)
                 setIsLoading(false)
-                // console.log(fetchedData)
             } catch (error) {
                 console.log('error: ',error)
             }
@@ -39,6 +35,7 @@ export default function Menu({token}) {
         getMenuData();
     }, [token])
 
+    // filter data by category
     const allProducts = () => {
         setShowAllProducts(true)
         setShowCategoryProducts(false)
@@ -72,6 +69,7 @@ export default function Menu({token}) {
             <div className="menu py-4 font-bold">
                 <h1>MENU</h1>
             </div>
+            {/* category menu */}
             <div className="menu-list px-4 flex gap-[2rem] font-bold overflow-x-scroll">
                 <button onClick={()=>allProducts()} className={showAllProducts? "border-black border-b-4 py-4 whitespace-nowrap" : " text-gray-400 py-4 whitespace-nowrap"}>Seasonal Product</button>
                 <button onClick={()=>bestSeller()} className={(showCategoryProducts && category===1) ? "border-black border-b-4 py-4 whitespace-nowrap" : " text-gray-400 py-4 whitespace-nowrap"}>Best Seller</button>
@@ -81,7 +79,9 @@ export default function Menu({token}) {
             </div>
         </header>
 
-        {!isLoading && <div className="all-data px-[1rem] pt-[5rem]">
+        {/* Show All Produtcs */}
+        {isLoading ? <h1 className=' text-xl pt-[5rem] px-[1rem] font-bold'>Loading...</h1> : 
+        <div className="all-data px-[1rem] pt-[5rem]">
         { showAllProducts &&
         menuData.map((category, index) => { return (
             <div key={index}>
@@ -103,7 +103,9 @@ export default function Menu({token}) {
         }
         </div>}
 
-        {!isLoading && <div className="category-data px-[1rem] pb-[4rem]">
+        {/* Show products by category */}
+        {isLoading ? <h1 className=' text-xl pt-[5rem] px-[1rem] font-bold'>Loading...</h1> : 
+        <div className="category-data px-[1rem] pb-[4rem]">
         { showCategoryProducts &&
             <div>
                 <h2 className='font-bold text-lg mt-[4rem] mb-6'>{menuData[category].category_name}</h2>
@@ -124,6 +126,7 @@ export default function Menu({token}) {
         </div>}
 
 
+         {/* Footer, Home & Menu navigation button */}
         <footer className=' bg-white grid grid-cols-2 fixed bottom-0 left-0 right-0 py-4'>
             <Link to="/" className='flex justify-center items-center'>
             <button className='flex flex-col justify-center items-center'>

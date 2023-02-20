@@ -14,6 +14,7 @@ function App() {
     <div className="App flex justify-center bg-slate-300">
       <main className="max-w-[500px] w-full bg-white min-h-screen">
         <Routes>
+          {/* Home route, if note logged in, go to login page */}
           <Route exact path="/" 
           element={
             loggedIn? 
@@ -22,8 +23,7 @@ function App() {
             <Navigate to={{ pathname: '/login', state: { from: '/' } }} />
           } />
 
-          <Route exact path="/login" element={<Login setLoggedIn={setLoggedIn} setToken={setToken} />} />
-
+          {/* Menu route, if note logged in, go to login page */}
           <Route exact path="/menu" 
           element={
             loggedIn? 
@@ -32,6 +32,8 @@ function App() {
             <Navigate to={{ pathname: '/login', state: { from: '/menu' } }} />
           } />
 
+          {/* Login route */}
+          <Route exact path="/login" element={<Login setLoggedIn={setLoggedIn} setToken={setToken} />} />
         </Routes>
       </main>
     </div>

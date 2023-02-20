@@ -13,6 +13,9 @@ export default function Login({setLoggedIn, setToken}) {
         SetIsLoading(true)
 
         try {
+            // Dikarenakan keterbatasan waktu, saya tidak sempat membuat
+            // error handling untuk email/password yg salah, jadi username & passwordnya
+            // saya tuliskan yang benarnya saja yaitu support@technopartner.id , 1234567
             const res = await fetch('https://soal.staging.id/oauth/token', {
                 method: 'POST',
                 headers: {
@@ -26,13 +29,11 @@ export default function Login({setLoggedIn, setToken}) {
                     password: "1234567"
                 })
             });
-            //   console.log(res)
             const data = await res.json();
-            console.log(data)
             setToken(data.access_token)
             SetIsLoading(false)
             setLoggedIn(true);
-            navigate('/');
+            navigate('/'); //navigasi ke home page
             } 
         catch (error) {
               console.log(error)
@@ -41,9 +42,12 @@ export default function Login({setLoggedIn, setToken}) {
 
   return (
     <div className='pt-[3rem] pb-[6rem] px-[2rem] flex flex-col justify-between items-center min-h-screen'>
+        {/* logo technopartner */}
         <div>
             <img src={Logo} alt="logo-technopartner" />
         </div>
+
+        {/* login form */}
         <form onSubmit={(e)=>loginToApp(e)} className=' flex flex-col gap-[2rem] w-full items-center'>
             <input type="email" required name="email" id="email" 
             placeholder='Email' 
@@ -55,6 +59,8 @@ export default function Login({setLoggedIn, setToken}) {
             value={password}
             onChange={(e)=>setPassword(e.target.value)}
             className=' w-full py-2 px-[2rem] focus:outline-none' />
+
+            {/* submit login */}
             <input type="submit" 
             value={isLoading? "Loading..." : "Login"} 
             className=' w-[200px] cursor-pointer box-shadow font-bold text-lg shadow-sm py-4 px-12 mt-[3rem] rounded-lg' />
